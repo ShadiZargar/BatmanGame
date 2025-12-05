@@ -32,7 +32,6 @@ public class BatmanStateController : MonoBehaviour
 
     void Start()
     {
-        // ensure alert lights are off at start
         if (alertLight1) alertLight1.enabled = false;
         if (alertLight2) alertLight2.enabled = false;
     }
@@ -59,7 +58,7 @@ public class BatmanStateController : MonoBehaviour
         currentState = newState;
         Debug.Log("==> STATE CHANGED TO: " + newState);
 
-        StopFlashing(); // stop old coroutine
+        StopFlashing();
 
         switch (newState)
         {
@@ -71,7 +70,7 @@ public class BatmanStateController : MonoBehaviour
 
             case BatmanState.Stealth:
                 mainLight.intensity = stealthIntensity;
-                TurnOffAlertLights();
+                TurnOffAlertLights(); 
                 if (alertSound) alertSound.Stop();
                 break;
 
@@ -107,18 +106,17 @@ public class BatmanStateController : MonoBehaviour
     }
 
     private IEnumerator FlashLights()
-{
-    bool toggle = false;
-
-    while (flashing)
     {
-        toggle = !toggle;
+        bool toggle = false;
 
-        if (alertLight1) alertLight1.enabled = toggle;     
-        if (alertLight2) alertLight2.enabled = !toggle;   
+        while (flashing)
+        {
+            toggle = !toggle;
 
-        yield return new WaitForSeconds(flashInterval);
+            if (alertLight1) alertLight1.enabled = toggle;    
+            if (alertLight2) alertLight2.enabled = !toggle;   
+
+            yield return new WaitForSeconds(flashInterval);
+        }
     }
-}
-
 }
