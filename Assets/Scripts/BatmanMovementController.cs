@@ -32,7 +32,7 @@ public class BatmanMovementController : MonoBehaviour
 
                 // BOOST with SHIFT
                 if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                    currentSpeed = normalSpeed * 1.8f;  // یا یک مقدار ثابت مثل 9
+                    currentSpeed = normalSpeed * 1.8f; 
 
                 break;
 
