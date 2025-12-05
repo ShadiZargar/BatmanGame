@@ -3,28 +3,42 @@ using UnityEngine;
 public class BatmanMovementController : MonoBehaviour
 {
     public float normalSpeed = 5f;
-    public float boostSpeed = 10f;
+    public float slowSpeed = 2f;
+    public float alertSpeed = 10f;
     public float rotationSpeed = 100f;
 
     private float currentSpeed;
 
+    private BatmanStateController stateController;
+
     private void Start()
     {
+        stateController = GetComponent<BatmanStateController>();
         currentSpeed = normalSpeed;
     }
 
     private void Update()
     {
-        HandleSpeed();
+        UpdateSpeedByState();
         HandleMovement();
     }
 
-    private void HandleSpeed()
+    private void UpdateSpeedByState()
     {
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-            currentSpeed = boostSpeed;
-        else
-            currentSpeed = normalSpeed;
+        switch (stateController.currentState)
+        {
+            case BatmanState.Normal:
+                currentSpeed = normalSpeed;
+                break;
+
+            case BatmanState.Stealth:
+                currentSpeed = slowSpeed;
+                break;
+
+            case BatmanState.Alert:
+                currentSpeed = alertSpeed;
+                break;
+        }
     }
 
     private void HandleMovement()
