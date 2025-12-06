@@ -1,6 +1,6 @@
 <div dir="rtl" style="text-align:right; line-height:1.85; font-size:16px;">
 
-<h1>🦇 گزارش پروژه  Batman Game</h1>
+<h1>🦇 پروژه  Batman Game</h1>
 
 <p>
 این پروژه یک شبیه‌ساز <strong>گشت شبانه بتمن در شهر گاتهام</strong> است.  
